@@ -9,17 +9,18 @@ interface ExerciseResult {
 }
 
 const calculateExercises = (numbers: number[]): ExerciseResult => {
-    let periodLength = numbers.length;
+    let periodLength = numbers.length-1;
     let trainingDays = 0;
     let trainingHours = 0;
-    for (let day of numbers){
+    for (let day of numbers.slice(1)){
         if(day > 0){
             trainingDays += 1;
             trainingHours += day;
         }
     }
     let average = trainingHours / periodLength;
-    let success = average >= 2;
+    let target = numbers[0];
+    let success = average >= target;
     let rating = 0;
     let ratingDescription = '';
 
@@ -42,13 +43,31 @@ const calculateExercises = (numbers: number[]): ExerciseResult => {
         success,
         rating,
         ratingDescription,
-        target: 2,
+        target,
         average
     };
 
 }
 
+const parseArguments = (args: string[]): number[] => {
+    if (args.length < 4) throw new Error('Not enough arguments');
+    const numbers: number[] = [];
+    for (let i = 2; i < args.length; i++) {
+        if (isNaN(Number(args[i]))) {
+            throw new Error('Provided values were not numbers!');
+        }
+        numbers.push(Number(args[i]));
+    }
+    return numbers;
+};
 
-let numbers: number[] = [3, 0, 2, 4.5, 0, 3, 1];
-
-console.log(calculateExercises(numbers));
+try {
+    const numbers = parseArguments(process.argv);
+    console.log(calculateExercises(numbers));
+} catch (error: unknown) {
+    let errorMessage = 'Something went wrong.';
+    if (error instanceof Error) {
+        errorMessage = error.message;
+    }
+    console.error(errorMessage);
+}
