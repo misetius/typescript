@@ -39,3 +39,5 @@ try {
     }
     console.error(errorMessage);
 }
+
+export { calculateBmi };
