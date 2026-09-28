@@ -1,22 +1,22 @@
 const calculateBmi = (height: number, weight: number): string => {
     
-    let bmi = (weight/(height*height))*10000;
-    console.log(bmi)
+    const bmi = (weight/(height*height))*10000;
+    
 
     if (bmi < 18.5){
-        return 'underweight'
+        return 'underweight';
     }
     else if (bmi >= 18.5 && bmi <= 24.9){
-        return 'normal range'
+        return 'normal range';
     } 
     else if (bmi >= 25 && bmi <= 29.9){
-        return  "overweight"  
+        return  "overweight";  
     }
     else{
-        return "obese"
+        return "obese";
     }
 
-}
+};
 
 const parseArgumentsBMI = (args: string[]): { height: number, weight: number } => {
     if (args.length < 4) throw new Error('Not enough arguments');

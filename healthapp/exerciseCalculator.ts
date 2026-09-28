@@ -9,35 +9,25 @@ interface ExerciseResult {
 }
 
 const calculateExercises = (numbers: number[]): ExerciseResult => {
-    let periodLength = numbers.length-1;
+    const periodLength = numbers.length-1;
     let trainingDays = 0;
     let trainingHours = 0;
-    for (let day of numbers.slice(1)){
+    for (const day of numbers.slice(1)){
         if(day > 0){
             trainingDays += 1;
             trainingHours += day;
         }
     }
-    let average = trainingHours / periodLength;
-    let target = numbers[0];
-    let success = average >= target;
-    let rating = 0;
-    let ratingDescription = '';
+    const average = trainingHours / periodLength;
+    const target = numbers[0];
+    const success = average >= target;
 
-    if (average < 1){
-        rating = 1;
-        ratingDescription = 'Not the best';
-    }
-    else if (average >= 1 && average < 2){
-        rating = 2;
-        ratingDescription = 'Not too bad but could be better';
-    }
-    else{
-        rating = 3;
-        ratingDescription = 'Exceptional!';
-    }
 
-    return {
+
+    if (average < 1 && average > 0){
+        const rating = 1;
+        const ratingDescription = 'Not the best';
+        return {
         periodLength,
         trainingDays,
         success,
@@ -46,8 +36,35 @@ const calculateExercises = (numbers: number[]): ExerciseResult => {
         target,
         average
     };
-
+    }
+    else if (average >= 1 && average < 2){
+        const rating = 2;
+        const ratingDescription = 'Not too bad but could be better';
+        return {
+        periodLength,
+        trainingDays,
+        success,
+        rating,
+        ratingDescription,
+        target,
+        average
+    }; 
+    }
+    
+    else{
+        const rating = 3;
+        const ratingDescription = 'Exceptional!';
+        return {
+        periodLength,
+        trainingDays,
+        success,
+        rating,
+        ratingDescription,
+        target,
+        average
+    }; 
 }
+};
 
 const parseArguments = (args: string[]): number[] => {
     if (args.length < 4) throw new Error('Not enough arguments');
