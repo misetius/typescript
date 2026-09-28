@@ -24,7 +24,7 @@ const calculateExercises = (numbers: number[]): ExerciseResult => {
 
 
 
-    if (average < 1 && average > 0){
+    if (average < 1){
         const rating = 1;
         const ratingDescription = 'Not the best';
         return {
