@@ -5,7 +5,8 @@ import { calculateExercises } from './exerciseCalculator.ts';
 const app = express();
 app.use(express.json());
 
-app.get('/', (_req, res) => {
+
+app.get('/hello', (_req, res) => {
   res.send('Hello Full Stack!');
 });
 
@@ -44,7 +45,7 @@ app.post('/exercises', (req, res) => {
   return res.json(exerciseData);
 });
 
-const PORT = 3003;
+const PORT = 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
