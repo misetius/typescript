@@ -24,7 +24,7 @@ const calculateExercises = (numbers: number[]): ExerciseResult => {
 
 
 
-    if (average < 1){
+    if (average < 2){
         const rating = 1;
         const ratingDescription = 'Not the best';
         return {
@@ -37,7 +37,7 @@ const calculateExercises = (numbers: number[]): ExerciseResult => {
         average
     };
     }
-    else if (average >= 1 && average < 2){
+    else if (average >= 2 && average <= 3){
         const rating = 2;
         const ratingDescription = 'Not too bad but could be better';
         return {
@@ -88,3 +88,5 @@ try {
     }
     console.error(errorMessage);
 }
+
+export { calculateExercises };
