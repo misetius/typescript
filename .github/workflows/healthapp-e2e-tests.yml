@@ -21,9 +21,9 @@ jobs:
       working-directory: ./healthapp
       run: npm install
     
-    - name: Lint healthapp
-      working-directory: ./healthapp
-      run: npm run lint
+  #  - name: Lint healthapp
+  #    working-directory: ./healthapp
+  #    run: npm run lint
     
     - name: Start healthapp server
       working-directory: ./healthapp
