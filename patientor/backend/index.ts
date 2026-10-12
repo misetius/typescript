@@ -1,5 +1,6 @@
 import express from 'express';
 import diagnosesService from './services/diagnosesService.ts';
+import patientsService from './services/patientsService.ts';
 
 const app = express();
 
@@ -19,6 +20,10 @@ app.get('/api/ping', (_req, res) => {
 
 app.get('/api/diagnoses', (_req, res) => {
   res.send(diagnosesService.getDiagnoses());
+});
+
+app.get('/api/patients', (_req, res) => {
+  res.send(patientsService.getPatients());
 });
 
 app.listen(PORT, () => {
